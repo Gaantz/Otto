@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 
 
@@ -29,7 +30,7 @@ public class Otto extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startService(new Intent(this,OttoService.class));
+        startService(new Intent(this, OttoService.class));
         BusHolder.getInstance().register(this);
     }
 
@@ -47,7 +48,12 @@ public class Otto extends ActionBarActivity {
 
     @Subscribe
     public void anotherButtonPress(ButtonEvent event) {
-        Toast.makeText(this, "Activity Llamado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, event.getActivityMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Produce
+    public String produceCustomString() {
+        return "Hello, World!";
     }
 
     @Override

@@ -31,7 +31,7 @@ public class OttoService extends Service {
 
     @Subscribe
     public void serviceButton(ButtonEvent event) {
-        Toast.makeText(this, "Service Llamado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,event.getServiceMessage(),Toast.LENGTH_SHORT).show();
     }
 
     @Subscribe
